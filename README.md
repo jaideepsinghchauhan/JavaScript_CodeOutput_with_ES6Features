@@ -114,3 +114,4 @@ delete obj1.key1;
  ```
 ## Output
   {key2: undefined, key3: null}
+## further
