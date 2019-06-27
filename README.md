@@ -115,6 +115,51 @@ delete obj1.key1;
 ## Output
   {key2: undefined, key3: null}
 
-## further
-=======
+ 
+ ## 10.
+```
+var quote = "Dream , Arise Awake and Work."
+var s = quote.substring(3,5);
+console.log(s);
+s.category="Inspiring";
+console.log(s.category);
+```
+## Output 
+  am undefined
+ explanation is wrapper type uses it and assigns null to the value after use.
+ s instance of string is false here.
+ s is type of string though
+ 
+## 11.
+```
+ sumFun(10,12);        
+ var sumFun = function(a,b){
+ return a+b; 
+ }
+ addFun(10,12);  
+ function addFun(a,b){
+ return a+b;
+ }
+ ```
+## Output 
+ //function hoisting wont happen for a Function expression
+ Error as function hositing wont support here
+ it will give proper output
+ 
+## 12.
+```
+ var StudentId = [30,10,20,5,100];
+ StudentId.sort();  // it wont sort number properly , it will sort based on the string value which it converts itself to.
+ ```
+ 
+## Output 
+ to properly sort we need to pass a function to itself  Ascending order
+ ```
+ StudentId.sort(function(num1, num2){
+ return num1-num2;
+ });
+ ```
+ 
+## Further questions coming up soon...
+
 
