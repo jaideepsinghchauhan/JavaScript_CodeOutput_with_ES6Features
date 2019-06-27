@@ -143,7 +143,9 @@ console.log(s.category);
  ```
 ## Output 
  //function hoisting wont happen for a Function expression
- Error as function hositing wont support here
+ 
+ Error as function hoisting won't support here
+ 
  it will give proper output
  
 ## 12.
