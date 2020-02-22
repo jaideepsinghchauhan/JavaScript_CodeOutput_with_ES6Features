@@ -210,33 +210,104 @@ There are two tricks here. First – executing code using function scope – (fu
 
 ## 17.
 ```
-
+var myObj = {
+	myFunction : function(){
+	console.log(this == myObj);
+	}
+}
+myObj.myFunction()
+myObj.myFunction()
 
 ```
-## Output 
+## Output  
+
+true
+false ( if its is called in the form obj.function "this" equals "obj" else "this" equals "global")
 
 ## 18.
 ```
-
+var myObj = {
+	myFunction : function(){
+	  console.log(this == myObj);
+		setTimeout(function(){
+		  console.log(this == myObj);
+		  console.log(this == global); 
+		},0);
+	};
+}
+myObj.myFunction()
 
 ```
 ## Output 
+true false true 
 
 ## 19.
 ```
-
+var myObj = {
+	myFunction : function(){
+	  console.log(this == myObj); 
+		setTimeout(()=>{
+		  console.log(this == myObj); 
+		  console.log(this == global);
+		},0);
+	};
+}
+myObj.myFunction()
 
 ```
 ## Output 
+true, true, false
 
 ## 20.
 ```
+var myFunction = function myOtherFunction(recurse){
+	if(recurse){
+	myFunction(false) //OK
+	mOtherFunction(false)  //OK
+	}
+}
+myFunction(true)
+myOtherFunction(true) 
+
+```
+## Output 
+OK , Reference error
+
+## 21.
+```
+const myObject = {}
+const myFunction = () => {
+	console.log(this == myObject);  
+}
+myFunction(); //false
+myFunction.call(myObject);  //false 
+
+```
+## Output 
+false false 
+(call bind and apply has no effect over arrow function.)
+## 22.
+```
 
 
 ```
 ## Output 
 
-## 21.
+## 23.
+```
+
+
+```
+## Output 
+
+## 24.
+```
+
+
+```
+## Output 
+
+## 25.
 ```
 
 
