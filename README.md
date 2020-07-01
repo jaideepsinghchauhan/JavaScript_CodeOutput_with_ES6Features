@@ -288,11 +288,19 @@ false false
 (call bind and apply has no effect over arrow function.)
 ## 22.
 ```
+const length = 4;
+const numbers = [];
+for (var i = 0; i < length; i++);{
+  numbers.push(i + 1);
+}
 
+numbers; // => ???
 
 ```
 ## Output 
-
+Being easily overlooked, this semicolon creates a null statement. The null statement is an empty statement that does nothing.
+for() increments i variable until 4. Then JavaScript enters one time the block { numbers.push(i + 1); }, pushing 4 + 1 to numbers array.
+Thus numbers is [5]
 ## 23.
 ```
 
