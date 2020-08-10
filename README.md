@@ -303,10 +303,15 @@ for() increments i variable until 4. Then JavaScript enters one time the block {
 Thus numbers is [5]
 ## 23.
 ```
-
-
+(click)="doSomething()"
+doSomething() {
+    (...)
+    return false;
+  }
+what happens because of return false in above code
 ```
 ## Output 
+Returning false calls preventDefault not stopPropagation ( but it stops any event propagation too eg: parent div click calls)
 
 ## 24.
 ```
