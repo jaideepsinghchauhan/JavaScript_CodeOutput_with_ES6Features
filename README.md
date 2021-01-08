@@ -315,11 +315,15 @@ Returning false calls preventDefault not stopPropagation ( but it stops any even
 
 ## 24.
 ```
-
-
+const numbers = [1,2,3];
+const newNumbers1 = [...numbers,4];
+const newNumbers2 = [numbers,4];
+console.log("New numbers 1: "+newNumbers1);
+console.log("New numbers 2: "+newNumbers2);
 ```
 ## Output 
-
+New numbers 1: [1, 2 ,3 ,4]
+New numbers 2: [[1, 2, 3],4]
 ## 25.
 ```
 
