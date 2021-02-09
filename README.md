@@ -342,9 +342,12 @@ console.log(this.b)}
 }
 
 ```
-## Output 
 what will be the output of obj.getA().getB()
 how to change the code to print 20 from this code "obj.getA().getB()"
+## Output 
+we can just return this
+getA(){
+console.log(this.a); return this}
 
 ## 27.
 ```
