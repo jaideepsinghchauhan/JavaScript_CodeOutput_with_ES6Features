@@ -326,6 +326,35 @@ New numbers 1: [1, 2 ,3 ,4]
 New numbers 2: [[1, 2, 3],4]
 ## 25.
 ```
+console.log([] == [])
+console.log([0] === [0])
+```
+## Output
+false, false ( why because array has reference pointer to memory )
+## 26.
+```
+var obj = {
+a:10, b:20,
+getA(){
+console.log(this.a)},
+getB(){
+console.log(this.b)}
+}
+
+```
+## Output 
+what will be the output of obj.getA().getB()
+how to change the code to print 20 from this code "obj.getA().getB()"
+
+## 27.
+```
+
+
+```
+## Output 
+
+## 28.
+```
 
 
 ```
