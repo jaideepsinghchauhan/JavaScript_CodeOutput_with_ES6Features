@@ -351,12 +351,33 @@ console.log(this.a); return this}
 
 ## 27.
 ```
-
+var obj = { name : 'Jai', age : 88, hobbies : ['Basketball', 'VolleyBall', 'Bowling'] }
+var myHobbies = obj.hobbies;
+obj.hobbies.push('Football');
+console.log(myHobbies);
+what will be the output
+```
+## Output 
+why because array is also reference type just like objects
+["Basketball", "VolleyBall", "Bowling", "Football"]
+## 28.
+```
+var obj2 = { name : 'Jai', age : 88, hobbies : ['Basketball', 'VolleyBall', 'Bowling'] }
+var myHobbies2 = obj2.hobbies.slice();
+obj2.hobbies.push('Football');
+console.log(myHobbies2);
 
 ```
 ## Output 
+["Basketball", "VolleyBall", "Bowling"] : Even though array is a reference type still we are using slice method which creates a new reference pointer for this array
+## 29.
+```
 
-## 28.
+
+```
+## Output
+
+## 30.
 ```
 
 
