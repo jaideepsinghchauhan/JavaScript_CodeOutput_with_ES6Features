@@ -372,10 +372,19 @@ console.log(myHobbies2);
 ["Basketball", "VolleyBall", "Bowling"] : Even though array is a reference type still we are using slice method which creates a new reference pointer for this array
 ## 29.
 ```
+var date = moment("2013-03-24")
+var now = moment();
 
+if (now > date) {
+   // date is past
+} else {
+   // date is future
+}
 
 ```
 ## Output
+it's worth explaining that this works because javascript coerces objects to primitives via Object.prototype.valueOf which is overridden in the moment prototype to return an epoch timestamp as a number.
+So this is similar to now.format('x') > date.format('x').
 
 ## 30.
 ```
