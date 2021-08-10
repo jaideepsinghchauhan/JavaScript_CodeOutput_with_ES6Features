@@ -388,6 +388,52 @@ So this is similar to now.format('x') > date.format('x').
 
 ## 30.
 ```
+Why is delete not allowed in Javascript5 strict mode
+// The delete statement is still allowed in strict mode, but some particular uses of it are erroneous. It's only allowed for object properties, not simple names, and only for object properties that can be deleted.
+
+// "use strict";
+
+// creates the property adminName on the global scope
+adminName = "xyz";
+
+// creates the property empCount on the global scope
+// Since we are using var, this is marked as non-configurable. The same is true of let and const.
+var empCount = 43;
+
+EmployeeDetails = {
+  name: "xyz",
+  age: 5,
+  designation: "Developer"
+};
+
+// adminName is a property of the global scope.
+// It can be deleted since it is created without var.
+// Therefore, it is configurable.
+console.log("delete adminName =", delete adminName); // returns true
+
+// On the contrary, empCount is not configurable,
+// since var was used.
+console.log("delete empCount =", delete empCount); // returns false
+
+// delete can be used to remove properties from objects
+console.log("delete EmployeeDetails.name =", delete EmployeeDetails.name); // returns true
+
+// Even when the property does not exists, it returns "true"
+console.log("delete EmployeeDetails.salary =", delete EmployeeDetails.salary); // returns true
+
+// delete does not affect built-in static properties
+console.log("delete Math.PI =", delete Math.PI); // returns false
+
+// EmployeeDetails is a property of the global scope.
+// Since it defined without "var", it is marked configurable
+console.log("delete EmployeeDetails =", delete EmployeeDetails); // returns true
+
+```
+## Output 
+
+
+## 31.
+```
 
 
 ```
