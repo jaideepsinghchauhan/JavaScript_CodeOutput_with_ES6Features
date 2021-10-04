@@ -213,6 +213,7 @@ There are two tricks here. First – executing code using function scope – (fu
 var myObj = {
 	myFunction : function(){
 	console.log(this == myObj);
+	console.log(this == global);
 	}
 }
 myObj.myFunction()
