@@ -431,9 +431,65 @@ console.log("delete EmployeeDetails =", delete EmployeeDetails); // returns true
 
 ```
 ## Output 
-
+Added Console statements in the problem itself.
 
 ## 31.
+How do you return an proper events array in case below:
+```
+getCalendarEvents(): Array<CalendarEvent> {
+         var listCal:any = []
+         this.getCalendarData().subscribe((listCal: any) => {
+             let startDate: Date,
+             endDate: Date,
+             event: CalendarEvent;
+             let colors: Array<Color> = [new Color(255, 55, 45, 255), new Color(199, 17, 227, 10)];
+             let events: Array<CalendarEvent> = new Array<CalendarEvent>();  
+	      for (let i = 1; i < listCal.length; i++) {
+                  event = new CalendarEvent(listCal[i].title, new Date(listCal[i].date), new Date(listCal[i].date), false, colors[i * 10 % (listCal[i].colour.length - 1)]);
+                  events.push(event);     
+              }
+             return events;
+           }
+         );    
+         //return events; HERE the events has no data because I am outside the .subscribe!
+    }
+
+```
+## Output 
+
+```
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+getCalendarEvents(): Observable<Array<CalendarEvent>> {
+  return this.getCalendarData().pipe(map((data: any) => {
+    // Your parsing code...
+    return events;
+  }));
+}
+
+// or:
+
+getCalendarEvents(): Observable<Array<CalendarEvent>> {
+  const result: Subject<Array<CalendarEvent>> = new Subject<Array<CalendarEvent>>();
+  this.getCalendarData().subscribe((data: any) => {
+    // Your parsing code...
+    result.next(events);
+    result.complete();
+  });
+  return result;
+}
+```
+adding this link for further context: https://stackoverflow.com/questions/46769042/subscribe-to-observable-is-returning-undefined
+
+## 32.
+```
+
+
+```
+## Output 
+
+## 33.
 ```
 
 
