@@ -501,8 +501,9 @@ let arr = [
 [5,6,[7,8],9],
 [10,11,12]
 ]
-
+/* Alternative way 1 that works only for 1 level 2d array*/
 /* let flattenedArray = [].concat(...arr) */
+/* Inbuild function which works properly if passed valid depth of array*/
 /* let flattenedArray = arr.flat(1) */
 let flattenedArray
 
