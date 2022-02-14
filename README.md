@@ -521,11 +521,46 @@ let result = []
 console.log(customFlat(arr,2))
 ```
 ## 33.
+write a composition polyfill function which takes these 3 functions and return a single value from right to left and in this case from bottom to top and return 23
 ```
-
+function addFive(a) {
+	return a+5;
+}
+function subtractTwo(a) {
+	return a-2;
+}
+function multiplyFour(a) {
+	return a*4
+}
 
 ```
 ## Output 
+Reduce right is just like reduce which accumulates value from right side
+```
+// Composition Polyfill
+
+function addFive(a) {
+console.log("addFive", a) //prints 3rd 18
+	return a+5;
+}
+function subtractTwo(a) {
+console.log("subtractTwo", a) //prints 2nd 20
+	return a-2;
+}
+function multiplyFour(a) {
+	console.log("multiplyFour ", a) // prints 1st 5
+	return a*4
+}
+
+const compose = (...functions) => {
+	return (args) => {
+   return	functions.reduceRight((arg, fn) => fn(arg), args);
+  }
+}
+const evaluate = compose(addFive, subtractTwo, multiplyFour)
+console.log(evaluate(5))  // 23 is output
+
+```
 ## 34.
 ```
 
