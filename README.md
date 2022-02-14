@@ -483,13 +483,56 @@ getCalendarEvents(): Observable<Array<CalendarEvent>> {
 adding this link for further context: https://stackoverflow.com/questions/46769042/subscribe-to-observable-is-returning-undefined
 
 ## 32.
+Flatten an array
+```
+let arr = [
+[1,2],
+[3,4,],
+[5,6,[7,8],9],
+[10,11,12]
+] 
+//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+```
+## Output 
+// Flatten the array
+let arr = [
+[1,2],
+[3,4,],
+[5,6,[7,8],9],
+[10,11,12]
+]
+
+/* let flattenedArray = [].concat(...arr) */
+/* let flattenedArray = arr.flat(1) */
+let flattenedArray
+
+function customFlat(array, depth = 1) {
+let result = []
+		array.forEach( arr => {
+   	if(Array.isArray(arr) && depth > 0){
+    result.push(...customFlat(arr, depth-1))
+    } else {
+    result.push(arr)
+    } 
+    })
+    return result;
+}
+console.log(customFlat(arr,2))
+//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+## 33.
+```
+
+
+```
+## Output 
+## 34.
 ```
 
 
 ```
 ## Output 
 
-## 33.
+## 35.
 ```
 
 
