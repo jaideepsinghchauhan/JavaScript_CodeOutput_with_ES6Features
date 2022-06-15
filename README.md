@@ -563,10 +563,31 @@ console.log(evaluate(5))  // 23 is output
 ```
 ## 34.
 ```
+//Sample1 ========================
+function foo(o) {
+  o[1] = 100;
+}
+var myArray = [1,2,3];
+console.log(myArray);  // o/p : [1,2,3]
+foo(myArray);
+console.log(myArray); // o/p : [1,100,3]
 
+//sample2 =====================================
+function bar(o) {
+  o = null;
+}
+var myArray2 = [1,2,3];
+console.log(myArray2);  // o/p : [1,2,3]
+bar(myArray2);
+console.log(myArray2); // o/p : [1,100,3]
+// upon return from bar, myArray2 is not set to null.. why so
 
 ```
 ## Output 
+Variables pointing to arrays only ever contain references. Those references are copied.
+In bar, o and myArray2 are both references to the same array. o is not a reference to the myArray2 variable.
+Inside the function, you are overwriting the value of o (a reference to the array) with a new value (null).
+You aren't following the reference and then assigning null to the memory space where the array exists.
 
 ## 35.
 ```
