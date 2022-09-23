@@ -43,12 +43,16 @@ function  function
 ## 4.
 ```
  function test() {
-  return foo; foo=10; 
-   function foo(){} var foo = '11'; };
- Console.log(typeof test());
+  console.log(foo)
+  return foo; 
+   foo=10; 
+  function foo(){} 
+  var foo = '11'; 
+};
+ console.log(typeof test());
 ```
 ## Output
-Console is not defined
+output is function, when both function and var with same name are there then function will be returned. for ex inner function will return foo function and not num or string, because other things are still undefined.
 
 ## 5.
 ```
