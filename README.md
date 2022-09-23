@@ -100,14 +100,14 @@ var a = 6;
 ## 9.
 ```
 (function(){ 
-var arrnum = [1,2,3];
+var arrnum = [3,1,2,1,3,5,6,31,92];
   arrnum.sort();
  console.log(arrnum); 
  }());
  ```
 ## Output 
-[1,2,3]
-
+[1,1,2,3,3,31,5,6,92] it will not sort properly we can see 31 before 5 in the array
+to sort properly we need to use arrnum.sort((num1,num2) => num1 - num2);
 
 ## 10.
 ```
