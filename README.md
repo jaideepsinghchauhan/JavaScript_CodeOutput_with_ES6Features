@@ -595,6 +595,49 @@ You aren't following the reference and then assigning null to the memory space w
 
 ## 35.
 ```
+Write a function to handle singleClick and double click on same HTML button:
+
+<button id="myButton">Click Me </button>
+const button = document.getElementById("myButton");
+button.addEventListener("click", handleClick);
+button.addEventListener("dblclick", handleDoubleClick);
+
+implement handleClick and handleDoubleClick such that both should not be triggered on single click or double click
+```
+## Output 
+function handleClick(event) {
+  // Clear any existing click timer before setting a new one
+  clearTimeout(button.clickTimer);
+  button.clickTimer = setTimeout(() => {
+    console.log("Single Click!");
+    button.clickTimer = null;
+  }, 300);
+}
+
+
+
+function handleDoubleClick(event) {
+  // Clear any existing click timer if double click occurs
+  clearTimeout(button.clickTimer);
+  console.log("Double Click!");
+}
+
+## 37.
+```
+Write a polyfills for debounce function
+
+```
+## Output 
+
+## 38.
+```
+write a polyfills for thorttling
+
+```
+## Output 
+
+## 39.
+```
 
 
 ```
