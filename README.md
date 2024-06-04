@@ -594,7 +594,7 @@ Inside the function, you are overwriting the value of o (a reference to the arra
 You aren't following the reference and then assigning null to the memory space where the array exists.
 
 ## 35.
-```
+
 Write a function to handle singleClick and double click on same HTML button:
 
 <button id="myButton">Click Me </button>
@@ -603,8 +603,9 @@ button.addEventListener("click", handleClick);
 button.addEventListener("dblclick", handleDoubleClick);
 
 implement handleClick and handleDoubleClick such that both should not be triggered on single click or double click
-```
+
 ## Output 
+```
 function handleClick(event) {
   // Clear any existing click timer before setting a new one
   clearTimeout(button.clickTimer);
@@ -621,6 +622,7 @@ function handleDoubleClick(event) {
   clearTimeout(button.clickTimer);
   console.log("Double Click!");
 }
+```
 
 ## 37.
 ```
