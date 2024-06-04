@@ -625,18 +625,54 @@ function handleDoubleClick(event) {
 ```
 
 ## 37.
-```
 Write a polyfills for debounce function
-
 ```
+const button = document.getElementById("myButton");
+button.addEventListener("click", debounce(myFun, 500));
+```
+
 ## Output 
+```
+function debounce(func, delay) {
+    let clearTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(clearTimer);
+        clearTimer = setTimeout(() => func.apply(context, args), delay);
+    }
+}
+
+function myFun(){
+	console.log("debounced");
+}
+```
 
 ## 38.
-```
 write a polyfills for thorttling
+```
+const btn = document.getElementById('myButton')
+btn.addEventListener('click', throttle(myFun, 2000))
 
+function myFun() {
+	console.log(" Throttle ")
+}
 ```
 ## Output 
+```
+function throttle (callback, limit) {
+    var waiting = false;                      // Initially, we're not waiting
+    return function () {                      // We return a throttled function
+        if (!waiting) {                       // If we're not waiting
+            callback.apply(this, arguments);  // Execute users function
+            waiting = true;                   // Prevent future invocations
+            setTimeout(function () {          // After a period of time
+                waiting = false;              // And allow future invocations
+            }, limit);
+        }
+    }
+}
+```
 
 ## 39.
 ```
