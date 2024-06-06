@@ -675,11 +675,14 @@ function throttle (callback, limit) {
 ```
 
 ## 39.
-```
+Just adding these links so i don't loose them
+A: create a tree view/explorer in React JS
+B: create a pagination in ReactJs
 
-
-```
 ## Output 
+A: https://youtu.be/20F_KzHPpvI?si=EIyjz9_fICRzGaaT
+B: https://youtu.be/cBsB7hhOzQI?si=5hVOh1b7U0jr2cOi
+Good link on ReactJs by roadside coder.
 
 ## Further questions coming up soon...
 
