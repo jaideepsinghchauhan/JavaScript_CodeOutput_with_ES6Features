@@ -675,15 +675,93 @@ function throttle (callback, limit) {
 ```
 
 ## 39.
-Just adding these links so i don't loose them
-A: create a tree view/explorer in React JS
-B: create a pagination in ReactJs
+
+Create a tree view/explorer in React JS based on mockData which has info about
+if a node is a folder and if a node is a file
 
 ## Output 
-A: https://youtu.be/20F_KzHPpvI?si=EIyjz9_fICRzGaaT
-B: https://youtu.be/cBsB7hhOzQI?si=5hVOh1b7U0jr2cOi
-Good link on ReactJs by roadside coder.
+```
+// App.js
+import React from "react";
+import Folder from "./Folder";
 
+const explorerData = [
+  {
+    name: "Folder 1",
+    isFolder: true,
+    items: [
+      {
+        name: "File 1.1",
+        isFolder: false,
+      },
+      {
+        name: "File 1.2",
+        isFolder: false,
+      },
+      {
+        name: "Subfolder 1.1",
+        isFolder: true,
+        items: [
+          {
+            name: "File 1.1.1",
+            isFolder: false,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Folder 2",
+    isFolder: true,
+    items: [
+      {
+        name: "File 2.1",
+        isFolder: false,
+      },
+    ],
+  },
+];
+
+export default function App() {
+  return (
+    <div className="App">
+      <h1>Folder Explorer</h1>
+      {explorerData.map((item) => (
+        <Folder key={item.name} explorer={item} />
+      ))}
+    </div>
+  );
+}
+
+// Folder.js
+import React, { useState } from "react";
+
+function Folder({ explorer }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div style={{ marginLeft: 20 }}>
+      <div onClick={handleClick} style={{ cursor: "pointer" }}>
+        {explorer.isFolder ? "📁" : "📄"} {explorer.name}
+      </div>
+      {explorer.isFolder && isOpen && (
+        <div>
+          {explorer.items.map((item) => (
+            <Folder key={item.name} explorer={item} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Folder;
+
+```
 ## Further questions coming up soon...
 
 
