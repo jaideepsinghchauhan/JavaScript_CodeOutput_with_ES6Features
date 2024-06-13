@@ -762,6 +762,41 @@ function Folder({ explorer }) {
 export default Folder;
 
 ```
+## 39.
+How do you check if obj has a property name 1 
+```
+const obj = {
+  1: 2,
+  3: 4,
+  hasOwnProperty: () => true
+}
+console.log(obj.hasOwnProperty(1))
+console.log(obj.hasOwnProperty(4))
+```
+## Output 
+```
+console.log(Object.hasOwnProperty.call(obj,5))
+```
+
+## 40.
+write a ?
+```
+
+```
+## Output 
+```
+
+```
+## 41.
+write a ?
+```
+
+```
+## Output 
+```
+
+```
+
 ## Further questions coming up soon...
 
 
