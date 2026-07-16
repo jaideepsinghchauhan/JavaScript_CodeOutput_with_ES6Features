@@ -1,0 +1,33 @@
+
+https://gomakethings.com/whats-the-difference-between-javascript-event-delegation-bubbling-and-capturing/
+https://javascript.info/event-delegation
+
+https://jstherightway.org/#must-see
+
+https://css-tricks.com/centering-css-complete-guide/
+
+ShadowDom and all about it.
+NGRX
+RXJS
+
+func abc(i){ console.log(i); }
+
+for(i=0;i<10;i++){ setTimeout(abc(i),1000) }
+ output : 0,1,2,3,4,5,6,7,8,9
+
+https://stackoverflow.com/questions/38365761/angular2-use-ngmodel-with-ngmodeloptions-standalone-true-to-link-to-a
+
+https://www.pluralsight.com/blog/software-development/understanding-javascript-prototypes
+
+https://www.youtube.com/watch?v=biOMz4puGt8 // Animated Responsive Navbar with CSS - Plus Other Useful Tricks
+
+What is the 'Execution Context' in JavaScript exactly?
+
+
+What is the difference between of and from::
+	const apples = ['Apple1', 'Apple2']
+	of(apples)     // [ Apple1, Apple2 ]  it will iterate in one go on the value of the object
+	from(apples)   // Apple1, Apple2  it will operate one bye one on the value of the object
+	to make this of to work like from we can use spread syntax just like this of(...apples).
+
+fromEvent can create observable from events from DOM like click or mouse.

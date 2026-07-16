@@ -1,0 +1,63 @@
+1.
+var myObj = {
+	myFunction : function(){
+	console.log(this == myObj);
+	}
+}
+myObj.myFunction()  // prints true
+
+
+2.
+var myObj = {
+	myFunction : function(){
+	console.log(this == myObj);
+	}
+}
+myObj.myFunction()  // prints false
+
+explanation : if its is called in the form obj.function "this" equals "obj" else "this" equals "global" 
+
+3. 
+var myObj = {
+	myFunction : function(){
+	  console.log(this == myObj);  // prints true
+		setTimeout(function(){
+		  console.log(this == myObj);  //prints false
+		  console.log(this == global);  //prints true
+		},0);
+	};
+}
+myObj.myFunction()
+
+4. 
+var myObj = {
+	myFunction : function(){
+	  console.log(this == myObj);  // prints true
+		setTimeout(()=>{
+		  console.log(this == myObj);  //prints true
+		  console.log(this == global);  //prints false
+		},0);
+	};
+}
+myObj.myFunction()
+
+
+5.
+var myFunction = function myOtherFunction(recurse){
+	if(recurse){
+	myFunction(false) //OK
+	mOtherFunction(false)  //OK
+	}
+}
+myFunction(true)  //OK
+myOtherFunction(true)  // Reference Error
+
+6.
+const myObject = {}
+const myFunction = () => {
+	console.log(this == myObject);  
+}
+myFunction(); //false
+myFunction.call(myObject);  //false 
+logic : call bind and apply has no effect over arrow function.
+

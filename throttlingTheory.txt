@@ -1,0 +1,29 @@
+Throttling is a technique in which, no matter how many times the user fires the event, 
+the attached function will be executed only once in a given time interval.
+
+Throttling
+Imagine yourself as a 7-year-old toddler who loves to eat chocolate cake! Today your mom has made one, but it's not for you,
+ it's for the guests! You, being spunky, keep on asking her for the cake. Finally, she gives you the cake.
+ But, you keep on asking her for more. Annoyed, she agrees to give you more cake with a condition that you can have the cake only after an hour.
+ Still, you keep on asking her for the cake, but now she ignores you. Finally, after an interval of one hour, you get more cake. If you ask for more,
+ you will get it only after an hour, no matter how many times you ask her.
+
+This is what throttling is!
+
+The above code renders a div with a scrollbar. We have added an event listener on the scroll event. Each time the user scrolls, an anonymous function is called that prints the number of times the scroll event is fired. When the user scrolls, we want to execute the makeAPICall method. 
+But, as this method is heavy, attaching it to a scroll event directly will cause it to fire frequently. This may cause unnecessary load on the server. To prevent this, we have used the technique of throttling.
+
+Let's examine the above code line by line:
+
+When the first scroll event is fired, throttleFunction is called with the makeAPICall function and delay in milliseconds as parameters.
+Inside throttleFunction, timerId is undefined, as it has not been initialized yet. So, we will go ahead and 
+schedule the func that is themakeAPICall function using the setTimeout function. 
+The setTimeout function will execute the func or the makeAPICall function after 200 milliseconds. Now, timerId will have the unique id of this setTimeout function.
+When the second event for the scroll is fired, timerId is not undefined inside throttleFunction, so the function will return without scheduling the execution of makeAPICall. 
+If timerId is not undefined it means that a setTimeout function has already been scheduled, hence we do not need to schedule another function.
+Thus, unless and until setTimeout executes the makeAPICall function, we will not be able to schedule another makeAPICall function using setTimeout. 
+This ensures that the makeAPICall function will be called only once in an interval.
+The point to be noted is: inside the setTimeout function we have changed timerId to undefined, 
+so once the scheduled makeAPICall function has been executed and the user again performs the scroll, 
+throttleFunction will schedule the execution of the makeAPICall function with the help of the setTimeout function. 
+Thus the makeAPICall function will be executed only once in a given interval.

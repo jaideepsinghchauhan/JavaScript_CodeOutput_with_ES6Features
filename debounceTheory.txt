@@ -1,0 +1,31 @@
+In the debouncing technique, 
+no matter how many times the user fires the event,
+the attached function will be executed only after the specified time once the user stops firing the event.
+
+Debouncing
+Consider the same cake example. This time you kept on asking your mom for the cake so many times that she got annoyed 
+and told you that she will give you the cake only if you remain silent for one hour. This means you won’t get the cake if you keep on asking her continuously 
+- you will only get it one hour after last time you ask, once you stop asking for the cake. This is debouncing.
+
+The above code renders an HTML page with a textbox. We have added an oninput event listener on the textbox that gets fired each time the user types something in the textbox.
+
+When the user types something, we want to call the makeAPICall method that makes an API call to fetch the data. But, as this method is heavy, we do not want to call it each time the user inputs something in the textbox. So instead of calling it directly inside the anonymous function, we have called a debounceFunction function inside which makeAPICall method is called.
+
+Let's understand more about the debounceFunction:
+
+The debounceFunction is used to limit the number of times any function is executed. It takes input as the func that is a function whose execution has to be limited, and delay that is the time in milliseconds. If the user types very fast, the debounceFunction will allow the execution of func only when the user has stopped typing in the textbox.
+
+Let’s examine the above code line by line:
+
+When the user types the first letter in the textbox, event handler or the anonymous function calls the debounceFunction with the makeAPICall function and 200 milliseconds as parameters.
+Inside the debounceFunction, timerId is undefined, as it has not been initialized so far. Hence, clearTimeout function will do nothing.
+Next, we pass func that is the makeAPICall function as a callback to the setTimeout function, with delay that is 200 milliseconds as another parameter. This means that we want the makeAPICall function to be executed after 200 milliseconds. The setTimeout function returns an integer value as its unique id, which is stored by the timerId.
+Now, when the user types a second letter in the textbox, again debounceFunction is called. But this time timerId is not undefined and it stores the unique id of the previous setTimeout function. Hence, when clearTimeout function is called with this timerId, it cancels the execution of the previous setTimeout function.
+Hence, all func or makeAPICall functions scheduled by setTimeout function due to the user typing in the textbox will be cancelled by the clearTimeout function. Only the makeAPICall function scheduled by the last letter in the textbox will execute after the specified time of 200 milliseconds.
+Thus, no matter how many letters the user types in the textbox, the debounceFunction will execute the makeAPICall method only one time after 200 milliseconds - after the user types the last letter. And that’s debouncing!
+
+Use of Debouncing and Throttling in Real Life
+We can throttle a button click event, if we do not want the user to spam by clicking the button frequently.
+In the case of window resize event, if we want to redraw the UI only when the user has fixed the size of the window, we can use debouncing.
+With Mouse move event, if we are displaying the location coordinates of the mouse pointer, it is much better to show the coordinates once the user reached the desired location. Here, we can use debouncing.
+Conclusion
