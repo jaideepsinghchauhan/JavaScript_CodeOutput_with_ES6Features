@@ -779,23 +779,156 @@ console.log(Object.hasOwnProperty.call(obj,5))
 ```
 
 ## 40.
-write a ?
-```
+we have 8 promises and them they should run in parallel and at a time max 4 can run, once any of current executing 
+promises are resolved we need to pull more form the array till all promises are resolved.
 
+
+```
+function createPromise(id, delay) {
+  return function () {
+    return new Promise((resolve) => {
+      console.log(`Promise ${id} started`);
+      setTimeout(() => {
+        console.log(`Promise ${id} resolved`);
+        resolve(`Result ${id}`);
+      }, delay);
+    });
+  };
+}
+
+const promiseFns = [
+  createPromise(1, 3000),
+  createPromise(2, 1000),
+  createPromise(3, 2000),
+  createPromise(4, 4000),
+  createPromise(5, 1500),
+  createPromise(6, 2500),
+  createPromise(7, 500),
+  createPromise(8, 3500),
+];
 ```
 ## Output 
 ```
+async function runWithConcurrencyLimit(promiseFns, limit) {
+  // Pre-allocate results array — maintains original order
+  const results = new Array(promiseFns.length);
 
+  // Shared index — acts as the "queue pointer"
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < promiseFns.length) {
+      // Atomically grab current index and move pointer forward
+      const i = nextIndex++;
+
+      try {
+        // Execute the task — worker is "busy" during this await
+        // Other workers continue pulling tasks independently
+        results[i] = await promiseFns[i]();
+      } catch (error) {
+        results[i] = { error, index: i };
+      }
+    }
+    // No more tasks — this worker exits naturally
+  }
+
+  // Don't spawn more workers than tasks
+  const workerCount = Math.min(limit, promiseFns.length);
+
+  // Spawn all 4 workers simultaneously — they start competing for tasks
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+
+  return results;
+}
+
+(async () => {
+  console.log("Starting with limit = 4");
+  console.time("Total time");
+  const results = await runWithConcurrencyLimit(promiseFns, 4);
+  console.timeEnd("Total time");
+  console.log("All done!", results);
+})();
 ```
+
+
+
 ## 41.
-write a ?
+write a observer pattern code in javascript
 ```
 
 ```
 ## Output 
 ```
+class Observable {
+  constructor() {
+    // List of all active subscribers
+    this.subscribers = [];
 
+    // Flag to track if stream has ended
+    this.completed = false;
+  }
+
+  // Add a subscriber
+  subscribe(observer) {
+    // Add observer to the list
+    this.subscribers.push(observer);
+
+    // Return unsubscribe handle for THIS specific observer
+    return {
+      unsubscribe: () => {
+        const index = this.subscribers.indexOf(observer);
+        if (index > -1) {
+          this.subscribers.splice(index, 1);
+        }
+      },
+    };
+  }
+
+  // Emit a value to all active subscribers
+  next(value) {
+    if (this.completed) return;
+
+    this.subscribers.forEach((sub) => {
+      sub.next(value);
+    });
+  }
+
+  // End the stream — notify all subscribers
+  complete() {
+    if (this.completed) return;
+
+    this.subscribers.forEach((sub) => {
+      sub.complete();
+    });
+
+    this.completed = true;
+  }
+}
+const stream = new Observable();
+
+const sub1 = stream.subscribe({
+  next: (val) => console.log("Observer 1:", val),
+  complete: () => console.log("Observer 1: DONE"),
+});
+
+const sub2 = stream.subscribe({
+  next: (val) => console.log("Observer 2:", val),
+  complete: () => console.log("Observer 2: DONE"),
+});
+
+stream.next("Hello");
+stream.next("World");
+sub2.unsubscribe();
+stream.next("Final");
+stream.complete();
+stream.next("Ignored");
 ```
+Observer 1: Hello
+Observer 2: Hello
+Observer 1: World
+Observer 2: World
+Observer 1: Final
+Observer 1: DONE
 
 ## Further questions coming up soon...
 
