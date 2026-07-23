@@ -854,9 +854,7 @@ async function runWithConcurrencyLimit(promiseFns, limit) {
 
 ## 41.
 write a observer pattern code in javascript
-```
 
-```
 ## Output 
 ```
 class Observable {
@@ -924,12 +922,106 @@ stream.complete();
 stream.next("Ignored");
 ```
 Observer 1: Hello
+
 Observer 2: Hello
+
 Observer 1: World
+
 Observer 2: World
+
 Observer 1: Final
+
 Observer 1: DONE
 
+## 42.
+What is Symbol? give example why we use that in call bind apply polyfills 
+
+## Output 
+```
+const a = Symbol("hello");
+const b = Symbol("hello");
+
+console.log(a === b); // false — ALWAYS unique, even with same description
+
+const id = Symbol("id");
+const user = {
+  name: "Jai",
+  age: 34,
+  [id]: 12345,      // Symbol as property key
+};
+
+console.log(user.name);  // "Jai"
+console.log(user[id]);   // 12345
+
+// Symbol properties are HIDDEN from normal iteration
+console.log(Object.keys(user));        // ["name", "age"] — no id!
+console.log(JSON.stringify(user));     // {"name":"Jai","age":34} — no id!
+
+// But you CAN access it if you have the symbol reference
+console.log(user[id]);                 // 12345
+
+Function.prototype.myCall = function (obj, ...args) {
+  obj.fn = this;        // ← Adding "fn" property to user's object
+  obj.fn(...args);
+  delete obj.fn;
+};
+
+const myObj = {
+  name: "Jai",
+  fn: "I am important data!",   // ← Already has "fn" property!
+};
+
+function greet() {
+  console.log(this.name);
+}
+
+greet.myCall(myObj);
+
+console.log(myObj.fn);  // undefined — ORIGINAL "fn" DATA IS GONE! ❌
+
+```
+
+## 43.
+What Is a Generator?
+
+## Output 
+A function that can pause and resume. It produces values one at a time instead of all at once.
+```
+function* myGenerator() {
+  console.log("Step 1");
+  yield "First";           // pause here, return "First"
+
+  console.log("Step 2");
+  yield "Second";          // pause here, return "Second"
+
+  console.log("Step 3");
+  yield "Third";           // pause here, return "Third"
+}
+const gen = myGenerator();  // Does NOT run the function yet!
+
+console.log(gen.next());
+// Step 1
+// { value: "First", done: false }
+
+console.log(gen.next());
+// Step 2
+// { value: "Second", done: false }
+
+console.log(gen.next());
+// Step 3
+// { value: "Third", done: false }
+
+console.log(gen.next());
+// { value: undefined, done: true }  ← no more yields
+
+```
+
+## 44.
+```
+
+```
+## Output 
+	
 ## Further questions coming up soon...
 
 
